@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { SupabaseMemberRepository } from '@/repositories/supabase/SupabaseMemberRepository';
 import { MemberWithProfile } from '@/repositories/interfaces/IMemberRepository';
 import { Invitation } from '@/types/app.types';
-import { Trash2 } from 'lucide-react';
+import { Trash2, ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 
 const memberRepo = new SupabaseMemberRepository();
 
@@ -78,7 +79,15 @@ export default function NotebookSettingsPage({ params }: { params: { id: string 
   if (loading) return <div className="p-8 text-neutral-500">Cargando configuración...</div>;
 
   return (
-    <div className="flex-1 p-8 max-w-3xl mx-auto w-full">
+    <div className="flex-1 p-4 md:p-8 max-w-3xl mx-auto w-full overflow-y-auto">
+      {/* Botón Volver Mobile */}
+      <div className="md:hidden mb-6 mt-2">
+        <Link href={`/notebooks/${params.id}`} className="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-800">
+          <ArrowLeft className="w-4 h-4 mr-1" />
+          Ver Libreta
+        </Link>
+      </div>
+
       <h2 className="text-2xl font-serif font-bold mb-8">Administrar Miembros</h2>
       
       {error && <div className="bg-red-50 text-red-600 p-3 rounded-md text-sm mb-6">{error}</div>}

@@ -3,6 +3,8 @@
 import { useNote } from '@/hooks/useNote';
 import { useEffect, useState } from 'react';
 import NotePresence from '@/components/notes/NotePresence';
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 
 export default function NoteEditor({ noteId }: { noteId: string }) {
   const { note, loading, error, isSaving, saveNote } = useNote(noteId);
@@ -44,7 +46,15 @@ export default function NoteEditor({ noteId }: { noteId: string }) {
   };
 
   return (
-    <div className="flex-1 flex flex-col pt-8 px-8 pb-0 max-w-4xl w-full mx-auto relative h-full">
+    <div className="flex-1 flex flex-col pt-8 px-4 md:px-8 pb-0 max-w-4xl w-full mx-auto relative h-full">
+      {/* Botón Volver Mobile */}
+      <div className="md:hidden flex mb-4">
+        <Link href={`/notebooks/${note.notebook_id}`} className="inline-flex items-center text-sm font-medium text-neutral-500 hover:text-indigo-600 transition-colors">
+          <ArrowLeft className="w-4 h-4 mr-1" />
+          Lista de notas
+        </Link>
+      </div>
+
       <div className="flex justify-between mb-4 h-6 items-center">
         <NotePresence noteId={noteId} />
         {isSaving ? (

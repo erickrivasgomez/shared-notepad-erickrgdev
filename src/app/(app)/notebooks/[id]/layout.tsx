@@ -13,8 +13,8 @@ export default function NotebookLayout({
   params: { id: string };
 }) {
   const segment = useSelectedLayoutSegment();
-  // Cuando segment es 'note' o 'settings', estamos en la vista de detalle
-  const isDetailView = segment === 'note' || segment === 'settings';
+  // Cuando segment es 'notes' o 'settings', estamos en la vista de detalle
+  const isDetailView = segment === 'notes' || segment === 'settings';
 
   return (
     <div className="flex-1 flex flex-col md:flex-row bg-white dark:bg-neutral-950 overflow-hidden">
